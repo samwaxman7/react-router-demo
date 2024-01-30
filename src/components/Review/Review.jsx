@@ -1,9 +1,9 @@
 import { useParams, useNavigate } from "react-router-dom";
+
 import "./Review.css";
 
 function Review({ reviews }) {
   const navigate = useNavigate();
-
   const params = useParams();
   let id = params.reviewId;
   id = id - 1;
