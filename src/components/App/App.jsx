@@ -12,29 +12,28 @@ import MyStory from "../AboutMe/MyStory";
 import AboutUs from "../AboutUs/AboutUs";
 import SiteHistory from "../AboutUs/SiteHistory";
 import SiteMission from "../AboutUs/SiteMission";
+import PageNotFound from "../PageNotFound/PageNotFound";
 import "./App.css";
 
 function App() {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    // Fetch the review data from the server.
     fetch("https://api.nomoreparties.co/emoji-critic-ens")
       .then((res) => {
         return res.json();
       })
       .then((data) => {
-        // Pass the parsed response body to the setter function.
         setReviews(data);
       })
       .catch(console.error);
-    // An empty dependency array means the hook only runs when
-    // component launches.
   }, []);
+
   return (
     <div className="App">
       <Header />
       <Routes>
+        <Route path="*" element={<PageNotFound />} />
         <Route path="/" element={<Dashboard />} />
         <Route path="/reviews" element={<Reviews reviews={reviews} />} />
         <Route
